@@ -13,14 +13,14 @@ app.get("/", (req, res) => {
   res.send("Welcome to my proxy backend service!");
 });
 
-app.get("/tractorJunction", async (req, res) => {
+app.get("/tractor", async (req, res) => {
   try {
     const response = await fetch(req.query.url);
     const html = await response.text();
     res.send(html);
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error retrieving content from Google");
+    res.status(500).send(`Error retrieving content from ${req.query.url}`);
   }
 });
 
